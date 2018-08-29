@@ -5,10 +5,9 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import Index from './pages/Index/index'
-import About from './pages/About/index'
-import Topics from './pages/Topics/index'
+import Loadable from 'react-loadable'
 
+const loading = () => <div>加载中...</div>
 const App = () => (
     <Router>
         <div>
@@ -24,9 +23,18 @@ const App = () => (
                 </li>
             </ul>
             <hr />
-            <Route exact path="/" component={Index} />
-            <Route path="/about" component={About} />
-            <Route path="/topics" component={Topics} />
+            <Route exact path="/" component={Loadable({
+                loader: ()=> import('./pages/Index/index'),
+                loading: loading
+            })} />
+            <Route path="/about" component={Loadable({
+                loader: () => import('./pages/About/index'),
+                loading: loading
+            })} />
+            <Route path="/topics" component={Loadable({
+                loader: () => import('./pages/Topics/index'),
+                loading: loading
+            })} />
         </div>
     </Router>
 );
