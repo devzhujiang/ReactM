@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from 'antd-mobile'
 const Index = ({ match }) => {
-    console.log(match)
     return(
         <div>
             <h2>Home</h2>
+            <Button type='primary'>哈哈</Button>
         </div>
     )
 }
